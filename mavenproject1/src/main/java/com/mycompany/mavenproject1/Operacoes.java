@@ -1,56 +1,31 @@
 package com.mycompany.mavenproject1;
 
-import java.util.ArrayList;
-
 public class Operacoes {
 
-    int opera;
+    private String opera;
+    private int a;
+    private int b;
 
-    public Operacoes(int opera){ 
-        this.opera = opera;
-    }
+    public void operador(String operar){ opera = operar; }
 
-    public void salvar(String valor){
+    public void n1(int num){ a = num; }
 
-        //TODO: terminar o codigo!
+    public void n2(int num){ b = num; }
 
-        ArrayList <String> numeros = new ArrayList<>();
+    public int resultado(){
 
-        numeros.add(valor);
+        switch (opera) {
+            case "+": return a + b;
 
-        if (numeros.size() >= 3) {
+            case"-": return a - b;
 
-            for (String iterable_element : numeros) {
+            case "*": return a * b;
 
-                Integer.parseInt(iterable_element);
+            case "/": return (a == 0 || b == 0) ? 0 : (int) (a / b) ;
 
-            }
-
+            default: return 0;
         }
 
     }
-
-    public int ouperacoes(int entrada, int alpha, int beta){
-
-        if (entrada == 1) { return som(alpha, beta); } 
-
-        else if (entrada == 2) { return sub(alpha, beta); } 
-
-        else if (entrada == 3) { return mult(alpha, beta); } 
-
-        else { return (int)div(alpha, beta); }
-
-    }
-
-
-    //! OPERAÇÕES
-
-    public int som(int a, int b){ return a + b; }
-
-    public int sub(int a, int b){ int result = ( a > b) ? a - b : b - a ; return result; }
-
-    public int mult(int a, int b){ return a * b; }
-
-    public float div(int a, int b) { float result = a / b; return result;}
 
 }
