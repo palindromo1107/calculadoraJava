@@ -18,6 +18,9 @@ public class NewJFrame extends javax.swing.JFrame {
         jTextField1.setDocument(new LimiteCaracteres(10));
     }
 
+    private Operacoes operacao = new Operacoes();
+    private boolean aguardandoSegundoNumero = false;
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -344,9 +347,15 @@ public class NewJFrame extends javax.swing.JFrame {
     }
 
     private void jButton_ActionPerformed(java.awt.event.ActionEvent evt) {
-        //Operacoes aux = new Operacoes();
-        //int resultado = aux.ouperacoes(1, 2, 2);
-        //jTextField1.setText(String.valueOf(resultado));
+
+        if (aguardandoSegundoNumero) {
+
+            operacao.n2(Integer.parseInt(jTextField1.getText()));
+
+            jTextField1.setText(String.valueOf(operacao.resultado()));
+
+        }
+
     }
 
     private void jButtonCActionPerformed(java.awt.event.ActionEvent evt) {
@@ -356,41 +365,54 @@ public class NewJFrame extends javax.swing.JFrame {
 
     //! OPERADORES
     //! -----------------------------------------------------------------------------------------------
-    //TODO: Conseguir uma forma de salvar e fazer a operação!
 
     private void jButton_plusActionPerformed(java.awt.event.ActionEvent evt) {
-        Operacoes aux = new Operacoes(1);
-        String a = jTextField1.getText();
-        aux.salvar(a);
+
+        operacao.n1(Integer.parseInt(jTextField1.getText()));
+        operacao.operador("+");
+        aguardandoSegundoNumero = true;
+        jTextField1.setText("0");
 
     }
 
+    private void jButton_subActionPerformed(java.awt.event.ActionEvent evt) {
 
+        operacao.n1(Integer.parseInt(jTextField1.getText()));
+        operacao.operador("-");
+        aguardandoSegundoNumero = true;
+        jTextField1.setText("0");
 
+    }
 
+    private void jButton_multActionPerformed(java.awt.event.ActionEvent evt) {
 
+        operacao.n1(Integer.parseInt(jTextField1.getText()));
+        operacao.operador("*");
+        aguardandoSegundoNumero = true;
+        jTextField1.setText("0");
 
-    private void jButton_subActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_subActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton_subActionPerformed
+    }
 
-    private void jButton_multActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_multActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton_multActionPerformed
+    private void jButton_divActionPerformed(java.awt.event.ActionEvent evt) {
 
-    private void jButton_divActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_divActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton_divActionPerformed
+        operacao.n1(Integer.parseInt(jTextField1.getText()));
+        operacao.operador("/");
+        aguardandoSegundoNumero = true;
+        jTextField1.setText("0");
+
+    }
 
     /**
      * @param args the command line arguments
      */
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
+
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
